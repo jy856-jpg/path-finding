@@ -59,15 +59,15 @@ class LeNet(nn.Module):
         return x
 class FCP(nn.Module):
     def __init__(self):
-        super(CNN_simplified, self).__init__()
+        super(FCP, self).__init__()
         self.fc1 = nn.Linear(28*28, 50,bias=False)  # Input layer to hidden layer 1
         self.fc2 = nn.Linear(50, 50,bias=False)     # Hidden layer 1 to hidden layer 2
         self.fc3 = nn.Linear(50, 10,bias=False)      # Hidden layer 2 to output layer
 
     def forward(self, x):
         x = x.view(-1, 28*28)  # Flatten the input
-        x = F.relu(self.fc1(x))  # Apply ReLU activation after first layer
-        x = F.relu(self.fc2(x))  # Apply ReLU activation after second layer
+        x = F.softplus(self.fc1(x))  # Apply ReLU activation after first layer
+        x = F.softplus(self.fc2(x))  # Apply ReLU activation after second layer
         x = self.fc3(x)          # Output layer (no activation function)
         return x
 class Autoencoder(nn.Module):
