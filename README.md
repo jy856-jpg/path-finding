@@ -79,9 +79,9 @@ The goal is to precisely control step sizes and study deterministic optimization
 
 This notebook studies loss-landscape connectivity by learning a smooth path in parameter space between two trained weight vectors.
 
-Given two solutions **x_1** and **x_2**, the path is defined using a truncated Fourier series:
+Given two solutions **\omega_1** and **\omega_2**, the path is defined using a truncated Fourier series:
 
-**\theta(t) = (1 - t)x_1 + tx_2 + \sum_{n=1}^N b_n \sin(n\pi t)**
+**\omega(t) = (1 - t)x_1 + tx_2 + \sum_{n=1}^N b_n \sin(n\pi t)**
 
 The Fourier coefficients **b_n** are learned to minimize loss along the path while maintaining smoothness.
 
@@ -89,7 +89,7 @@ The Fourier coefficients **b_n** are learned to minimize loss along the path whi
 
 ### Key Components
 
-- FourierPathNN: Generates a continuous weight path as a function of **t \in [0,1]**
+- FourierPathNN: Generates a continuous weight path as a function of **t ∈  [0,1]**
 - Path loss: Sum of task loss evaluated at discrete points along the path
 - Smoothness regularization: Penalizes sharp changes between consecutive weights
 - Optimizer: Adam
