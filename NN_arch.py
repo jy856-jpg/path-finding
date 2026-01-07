@@ -39,22 +39,22 @@ class LSTM_sMNIST(nn.Module):
 class LeNet(nn.Module):
     def __init__(self):
         super(LeNet, self).__init__()
-        self.conv1 = nn.Conv2d(1, 6, kernel_size=5, stride=1, padding=2)  # Output: 28x28x6
-        self.pool1 = nn.AvgPool2d(kernel_size=2, stride=2)  # Output: 14x14x6
-        self.conv2 = nn.Conv2d(6, 16, kernel_size=5, stride=1)  # Output: 10x10x16
-        self.pool2 = nn.AvgPool2d(kernel_size=2, stride=2)  # Output: 5x5x16
+        self.conv1 = nn.Conv2d(1, 6, kernel_size=5, stride=1, padding=2)
+        self.pool1 = nn.AvgPool2d(kernel_size=2, stride=2)
+        self.conv2 = nn.Conv2d(6, 16, kernel_size=5, stride=1)
+        self.pool2 = nn.AvgPool2d(kernel_size=2, stride=2)
         self.fc1 = nn.Linear(16 * 5 * 5, 120)
         self.fc2 = nn.Linear(120, 84)
-        self.fc3 = nn.Linear(84, 10)  # 10 output classes (like MNIST)
+        self.fc3 = nn.Linear(84, 10)
 
     def forward(self, x):
-        x = torch.relu(self.conv1(x))
+        x = F.softplus(self.conv1(x))
         x = self.pool1(x)
-        x = torch.relu(self.conv2(x))
+        x = F.softplus(self.conv2(x))
         x = self.pool2(x)
-        x = x.view(x.shape[0], -1)  # Flatten
-        x = torch.relu(self.fc1(x))
-        x = torch.relu(self.fc2(x))
+        x = x.view(x.shape[0], -1)
+        x = F.softplus(self.fc1(x))
+        x = F.softplus(self.fc2(x))
         x = self.fc3(x)
         return x
 class FCP(nn.Module):
