@@ -46,7 +46,7 @@ The goal is to precisely control step sizes and study deterministic optimization
 
 - Limited-memory BFGS (L-BFGS)
 - Two-loop recursion for inverse Hessian approximation
-- Brent line search with fixed evaluation budget
+- GSS line search with fixed evaluation budget
 - Automatic reset when numerical instability is detected
 - Full-batch training for deterministic gradients
 
